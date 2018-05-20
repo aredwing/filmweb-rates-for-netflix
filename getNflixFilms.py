@@ -23,7 +23,7 @@ def getMoviesList(pagesCount):
         url = "https://www.nflix.pl/netflix-polska-lista-wszystkich-dostepnych-tytulow/?o=all_f&p=" + str(i)
         page = requests.get(url)
 
-        # remove som invalid xml strings
+        # remove some invalid xml strings
         invalidStr = """<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>"""
         tmpContent = "" + page.content.decode("utf-8")
         validContent = tmpContent[0:tmpContent.find(invalidStr)] + tmpContent[tmpContent.find(invalidStr) + len(invalidStr):]
