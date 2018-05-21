@@ -94,7 +94,6 @@ class FilmwebScraper:
         return film.userRate
 
     def getFilmByTitle(self, title, year, alternativeTitle = ""):
-
         similarityRate = 0.8  # title similarity rate
         yearRange = 2  # allowed drift for film relase date (it may be different depending on a country)
 
@@ -109,7 +108,7 @@ class FilmwebScraper:
             refTitle = title.lower()
             _title = film.title.lower()
             _orgTitle = film.orgTitle.lower()
-            if (SequenceMatcher(None, _title, refTitle).ratio() >= similarityRate ) or \
+            if (SequenceMatcher(None, _title, refTitle).ratio() >= similarityRate) or \
                     (SequenceMatcher(None, _orgTitle, refTitle).ratio() >= similarityRate ):
                 return film
 
@@ -118,7 +117,6 @@ class FilmwebScraper:
                 if (SequenceMatcher(None, _title, alterTitle).ratio() >= similarityRate) or \
                     (SequenceMatcher(None, _orgTitle, alterTitle).ratio() >= similarityRate ):
                     return film
-
         return None
 
     def logout(self):
@@ -173,8 +171,6 @@ def getFilmwebRates(nflixFilms, fwUsername, fwPasswd):
 
         processedCount = processedCount+1
         print("Processing {} of {}".format(processedCount, filmsCount))
-        if processedCount>20:
-            break
 
     resFile.close()
     scraper.logout()
